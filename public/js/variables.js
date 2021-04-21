@@ -32,3 +32,15 @@ const saveSettings = document.getElementById('saveSettings');
 let settingsPomodoroLength = document.getElementById('settingsPomodoroLength');
 let settingsShortBreakLength = document.getElementById('settingsShortBreakLength');
 let settingsLongBreakLength = document.getElementById('settingsLongBreakLength');
+
+//variables related to login modal
+const loginForm = document.getElementById('loginForm');
+const loginButton = document.getElementById('loginButton');
+const loginEmail = document.getElementById('loginEmail');
+const loginPassword = document.getElementById('loginPassword');
+
+//variables related to register modal
+const registerForm = document.getElementById('registerForm');
+const registerButton = document.getElementById('registerButton');
+const registerEmail = document.getElementById('registerEmail');
+const registerPassword = document.getElementById('registerPassword');

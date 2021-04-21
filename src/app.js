@@ -25,5 +25,21 @@ app.get('', (req, res) => {
     res.render('index');
 });
 
+app.get('/server', (req, res) => {
+    console.log(req.query.mode);
+    if(req.query.mode === 'login'){
+        console.log(req.query.email);
+        console.log(req.query.password);
+    }
+    else if(req.query.mode === 'register'){
+        console.log(req.query.email);
+        console.log(req.query.password);
+    }
+});
+
+app.get('*', (req, res) => {
+    res.render('index');
+});
+
 //listener
 app.listen(port);

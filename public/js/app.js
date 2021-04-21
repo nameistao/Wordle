@@ -72,3 +72,33 @@ saveSettings.addEventListener('click', function(){
     }
     updateTitle();
 });
+
+//for login, sends info to back-end
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    fetch('/server?mode=login&email=' + loginEmail.value + '&password=' + loginPassword.value).then((response) => {
+        response.json().then((data) => {
+            if(data.error){
+                alert("No user exists. Please Register.");
+            }
+            else{
+                alert("Successfully Logged In.")
+            }
+        });
+    });
+});
+
+//for register, sends info to back-end
+registerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    fetch('/server?mode=register&email=' + registerEmail.value + '&password=' + registerPassword.value).then((response) => {
+        response.json().then((data) => {
+            if(data.error){
+                alert("No user exists. Please Register.");
+            }
+            else{
+                alert("Successfully Logged In.")
+            }
+        });
+    });
+});
