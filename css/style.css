@@ -1,0 +1,47 @@
+body{
+    background-color: #db524d;
+}
+#innerBox{
+    background-color: #df645f;
+}
+
+/*task list css*/
+.tasks{
+    background-color: transparent;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #eeeeee 1px;
+    border-radius:0%;
+    color: #eeeeee;
+    caret-color: #eeeeee;
+}
+.tasks:focus {
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: solid #eeeeee 1px;
+    color: #eeeeee;
+}
+.tasks::placeholder{
+    color: #eeeeee;
+    outline: none;
+}
+
+/*progress bar css*/
+#progress{
+    width:100%;
+    background-color: transparent;
+}
+#bar{
+    width: 50%;
+    height: 2px;
+    background-color: #eeeeee;
+}
+.progress-bar-color{
+    background-color: #eeeeee;
+}
+.progress-color{
+    background-color: transparent;
+}

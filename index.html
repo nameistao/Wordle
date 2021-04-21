@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- adding bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- adding custom stylesheet -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- adding font awesome script -->
+    <script src="https://kit.fontawesome.com/82a5aa9cf2.js" crossorigin="anonymous"></script>
+    <!-- addign bootstrap javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <title>Pomodororo</title>
+</head>
+<body>
+    <main class='container'>
+        <!-- first row - title -->
+        <div class='row'>
+            <div class='col-8 offset-2 mt-5'>
+                <div class='row'>
+                    <div class='col-1'>
+                        <button class='btn btn-outline-light' data-bs-toggle="modal" data-bs-target="#informationModal"><i class='fas fa-info'></i></button>
+                    </div>
+                    <div class='col-3'>
+                        <button id='settingsButton' class='btn btn-outline-light' data-bs-toggle="modal" data-bs-target="#settingsModal"><i class='fas fa-cog'></i></button>
+                    </div>
+                    <div class='col-4 text-center text-white'><h1>Pomodororo</h1></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- second row - progress bar -->
+        <div class='row'>
+            <div class='col-10 offset-1 mt-2'>
+                <div class="progress-color progress">
+                    <div id='progressBar' class="progress-bar-color progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                    <span class="sr-only"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- third row - timer box -->
+        <div class='row'>
+            <div id='innerBox' class='col-8 offset-2 mt-5 well rounded-lg'>
+                <div class='row mt-4'>
+                    <div class="btn-group offset-1 col-10" role="group" aria-label="Basic example">
+                        <button id='pomodoro' type="button" class="timerswitch btn btn-outline-light">Pomodoro</button>
+                        <button id='short-break' type="button" class="timerswitch btn btn-outline-light">Short Break</button>
+                        <button id='long-break' type="button" class="timerswitch btn btn-outline-light">Long Break</button>
+                    </div>
+                </div>
+                <div class='row text-center text-white font-weight-bold mt-3'>
+                    <h1 id='timer' class='display-1'><span id='minutes'></span> : <span id='seconds'>00</span></h1>
+                </div>
+                <div class='text-white text-center mt-3 mb-4'>
+                    <button id='startStop' class='btn btn-outline-light'>Start</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- fourth row - task list -->
+        <div class='row'>
+            <!-- each row here is a task row -->
+            <div id='tasks' class='col-10 offset-1'>
+                <div class='row'>
+                    <div class='col-11 mt-5 p-2'>
+                        <input id='addTaskString' type='text' class='tasks form-control' placeholder='Add Task'>
+                    </div>
+                    <div class='col-1 mt-5 p-2'>
+                        <button id='addTask' class='btn btn-outline-light'><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<!-- Modal for information -->
+<div class="modal fade" id="informationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">About Pomodororo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li>
+                    Pomodororo is a pomodoro timer that helps you to focus on your tasks.
+                </li>
+                <li>
+                    Features:
+                </li>
+                <li>
+                    Customizable countdown timers
+                </li>
+                <li>
+                    Task list
+                </li>
+                <li>
+                    Progress bar
+                </li>
+            </ul> 
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Modal for settings -->
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class='row'>
+                <div class='col-8'>Set Pomodoro</div>
+                <div class='col-4'>
+                    <input id='settingsPomodoroLength' type='number' min='1' max='180' class='col-4 form-control'>
+                </div>
+            </div>
+            <div class='row mt-3'>
+                <div class='col-8'>Set Short Break</div>
+                <div class='col-4'>
+                    <input id='settingsShortBreakLength' type='number' min='1' max='180' class='col-4 form-control'>
+                </div>
+            </div>
+            <div class='row mt-3'>
+                <div class='col-8'>Set Long Break</div>
+                <div class='col-4'>
+                    <input id='settingsLongBreakLength' type='number' min='1' max='180' class='col-4 form-control'>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            Note: Saving will restart timers
+            <button id='saveSettings' type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+          </div>
+    </div>
+    </div>
+</div>
+
+<!-- sounds -->
+<audio id="startStopButtonSound">
+    <source src="sounds/startStopButton.mp3" type="audio/mpeg">
+</audio>
+<audio id="timesUp">
+    <source src="sounds/timesUp.mp3" type="audio/mpeg">
+</audio>
+
+<!-- adding external javascript files -->
+<script src='./js/variables.js'></script>
+<script src='./js/helpers.js'></script>
+<script src='./js/app.js'></script>
+<script src='./js/sounds.js'></script>
+</body>
+</html>
