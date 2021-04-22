@@ -9,22 +9,43 @@ const register = (email, password) => {
     const databaseName = 'pomodororo';
     const connectionURL = 'mongodb+srv://tao:DoxmGsMXpm4sKeRq@cluster0.2fxjm.mongodb.net/my'+databaseName+'?retryWrites=true&w=majority';
     
+    //connect to client
     MongoClient.connect(connectionURL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
         if(error){
             return console.log('Unable to connect to database');
         }
         const db = client.db(databaseName);
-    
-        db.collection('users').insertOne({
-            email: email,
-            passwordHash: crypto.createHash('md5').update(password).digest('hex')
-        }, (error, result) => {
-            if(error){
-                return console.log('unable to register user');
+
+        //check if user exists already
+        db.collection('users').findOne({email: email}, (error, user) => {
+            if(error) {
+                return console.log('Unable to fetch');
             }
             
-            console.log(result.ops);
-        });
+            //if user exists
+            if(user !== null){
+                return console.log('User exists already.');
+            }
+            //else add user
+            else{
+                //add this new user to the database in the users collection
+                db.collection('users').insertOne({
+                    email: email,
+                    passwordHash: crypto.createHash('md5').update(password).digest('hex'),
+                    pomodoroTime: 25,
+                    shortBreakTime: 5,
+                    longBreakTime: 15,
+                    tasks: []
+                }, (error, result) => {
+                    if(error){
+                        return console.log('unable to register user');
+                    }
+                    
+                    console.log(result.ops);
+                });
+            }
+            console.log(user);
+        })
     });
 };
 
