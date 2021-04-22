@@ -31,8 +31,7 @@ app.get('', (req, res) => {
 app.get('/server', (req, res) => {
     console.log(req.query.mode);
     if(req.query.mode === 'login'){
-        console.log(req.query.email);
-        console.log(req.query.password);
+        mongodbUtils.login(req.query.email, req.query.password);
     }
     else if(req.query.mode === 'register'){
         mongodbUtils.register(req.query.email, req.query.password);
