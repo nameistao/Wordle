@@ -94,10 +94,10 @@ registerForm.addEventListener('submit', (e) => {
     fetch('/server?mode=register&email=' + registerEmail.value + '&password=' + registerPassword.value).then((response) => {
         response.json().then((data) => {
             if(data.error){
-                alert("No user exists. Please Register.");
+                alert("User already exists.");
             }
             else{
-                alert("Successfully Logged In.")
+                alert("Successfully Registered.")
             }
         });
     });

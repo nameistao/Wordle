@@ -3,6 +3,8 @@ const path = require('path');
 //npm packages
 const express = require('express');
 const hbs = require('hbs');
+//import custom packages
+const mongodb = require('./app.js');
 
 //express object and port
 const app = express();
@@ -25,6 +27,7 @@ app.get('', (req, res) => {
     res.render('index');
 });
 
+//route for mongoDB stuff
 app.get('/server', (req, res) => {
     console.log(req.query.mode);
     if(req.query.mode === 'login'){
@@ -32,8 +35,7 @@ app.get('/server', (req, res) => {
         console.log(req.query.password);
     }
     else if(req.query.mode === 'register'){
-        console.log(req.query.email);
-        console.log(req.query.password);
+        register(req.query.email, req.query.password);
     }
 });
 
