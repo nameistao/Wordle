@@ -1,7 +1,6 @@
-//import core modules
-const crypto = require('crypto');
 //import npm modules
 const {MongoClient, ObjectID} = require('mongodb');
+const bcrypt = require('bcrypt');
 
 //function for registering
 const register = (email, password) => {
@@ -28,20 +27,23 @@ const register = (email, password) => {
             }
             //else add user
             else{
-                //add this new user to the database in the users collection
-                db.collection('users').insertOne({
-                    email: email,
-                    passwordHash: crypto.createHash('md5').update(password).digest('hex'),
-                    pomodoroTime: 25,
-                    shortBreakTime: 5,
-                    longBreakTime: 15,
-                    tasks: []
-                }, (error, result) => {
-                    if(error){
-                        return console.log('unable to register user');
-                    }
-                    
-                    console.log(result.ops);
+                //generate password using bcrypt
+                bcrypt.hash(password, 10, function(err, pwHash) {
+                     //add this new user to the database in the users collection
+                    db.collection('users').insertOne({
+                        email: email,
+                        passwordHash: pwHash,
+                        pomodoroTime: 25,
+                        shortBreakTime: 5,
+                        longBreakTime: 15,
+                        tasks: []
+                    }, (error, result) => {
+                        if(error){
+                            return console.log('unable to register user');
+                        }
+                        
+                        console.log(result.ops);
+                    });
                 });
             }
             console.log(user);
@@ -75,14 +77,17 @@ const login = (email, password) => {
                 console.log(user);
 
                 //TODO: check if passwordHash matches
-                if(user.passwordHash === crypto.createHash('md5').update(password).digest('hex')){
+                bcrypt.compare(password, user.passwordHash, function(err, result) {
+                    if(err){
+                        return console.log('password comparison error');
+                    }
+                    if(result === false){
+                        return console.log('password does not match');
+                    }
                     console.log('password matches');
-                }
-                else{
-                    console.log('password does not match');
-                }
 
-                //TODO: pass user data to front-end
+                    //now pass user data to front-end
+                });
             }
             //else tell front-end user doesn't exist
             else{
@@ -93,6 +98,7 @@ const login = (email, password) => {
     });
 };
 
+//export module
 module.exports = {
     register,
     login
