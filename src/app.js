@@ -4,7 +4,7 @@ const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
 //import custom packages
-const mongodb = require('./app.js');
+const mongodbUtils = require('./utils/mongodb');
 
 //express object and port
 const app = express();
@@ -35,7 +35,7 @@ app.get('/server', (req, res) => {
         console.log(req.query.password);
     }
     else if(req.query.mode === 'register'){
-        register(req.query.email, req.query.password);
+        mongodbUtils.register(req.query.email, req.query.password);
     }
 });
 

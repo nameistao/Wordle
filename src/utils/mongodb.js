@@ -1,6 +1,6 @@
-//CRUD create read update delete
-
-//import mongodb
+//import core modules
+const crypto = require('crypto');
+//import npm modules
 const {MongoClient, ObjectID} = require('mongodb');
 
 //function for registering
@@ -17,7 +17,7 @@ const register = (email, password) => {
     
         db.collection('users').insertOne({
             email: email,
-            passwordHash: createHash(password)
+            passwordHash: crypto.createHash('md5').update(password).digest('hex')
         }, (error, result) => {
             if(error){
                 return console.log('unable to register user');
@@ -28,4 +28,6 @@ const register = (email, password) => {
     });
 };
 
-module.exports = register;
+module.exports = {
+    register
+};
