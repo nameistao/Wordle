@@ -76,6 +76,7 @@ buttonGroupLoginButton.addEventListener('click', () => {
     if(buttonGroupLoginButton.textContent === 'Logout'){
         //update button functionality and text
         buttonGroupLoginButton.setAttribute('data-bs-target', '#loginModal');
+        buttonGroupLoginButton.setAttribute('data-bs-toggle', 'modal');
         buttonGroupLoginButton.textContent = 'Login';
 
         //update loggedInEmail
@@ -86,6 +87,7 @@ buttonGroupLoginButton.addEventListener('click', () => {
 //for login, sends info to back-end
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    loginModalText.textContent = 'Status: Logging in...';
     fetch('/server?mode=login&email=' + loginEmail.value + '&password=' + loginPassword.value).then((response) => {
         response.json().then((data) => {
             if(data.error){
@@ -117,11 +119,16 @@ loginForm.addEventListener('submit', (e) => {
                 }
 
                 buttonGroupLoginButton.removeAttribute('data-bs-target');
+                buttonGroupLoginButton.removeAttribute('data-bs-toggle');
 
                 //TODO: update page with user information (tasks)
 
-                //close the modal
+                //empty login inputs and close the modal
+                loginModalText.textContent = 'Status: Success';
+                loginEmail.value = '';
+                loginPassword.value = '';
                 closeLoginModalButton.click();
+                loginModalText.textContent = '';
             }
         });
     });
@@ -131,7 +138,7 @@ loginForm.addEventListener('submit', (e) => {
 registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     registerModalText.textContent = 'Status: Registering...';
-    fetch('/server?mode=updateTimers&email=' + registerEmail.value + '&password=' + registerPassword.value).then((response) => {
+    fetch('/server?mode=register&email=' + registerEmail.value + '&password=' + registerPassword.value).then((response) => {
         
         response.json().then((data) => {
             if(data.error){
