@@ -127,23 +127,22 @@ const updateTimers = (email, pomodoroTime, shortBreakTime, longBreakTime, callba
         }
         const db = client.db(databaseName);
 
-        //check if user exists
-        db.collection('users').findOne({email: email}, (error, user) => {
-            if(error) {
-                callback('Unable to fetch',undefined);
-                return;
+        //updates that user's timers
+        const updatePromise = db.collection('users').updateOne({
+            email: email
+        },
+        {
+            $set: {
+                pomodoroTime: pomodoroTime,
+                shortBreakTime: shortBreakTime,
+                longBreakTime: longBreakTime
             }
-            
-            //TODO: if user exists, update timer data
-            if(user !== null){
-
-            }
-            //else tell front-end user doesn't exist
-            else{
-                //tell front-end user doesn't exist
-                callback('user doesn\'t exist', undefined);
-                return;
-            }
+        })
+    
+        updatePromise.then((result) => {
+            console.log(result);
+        }).catch((error) => {
+            console.log(error);
         })
     });
 };

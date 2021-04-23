@@ -12,14 +12,14 @@ startStop.addEventListener('click', () => {
 //timer switch functionality
 timerSwitchButtons.forEach( (button) => {
     button.addEventListener('click', () => {
-        let btn = button.textContent;
-        if(btn === 'Pomodoro'){
+        let btn = button.id;
+        if(btn === 'pomodoro'){
             toPomodoroMode();
         }
-        else if(btn === 'Short Break'){
+        else if(btn === 'short-break'){
             toShortBreakMode();
         }
-        else if(btn === 'Long Break'){
+        else if(btn === 'long-break'){
             toLongBreakMode();
         }
     });
@@ -93,7 +93,6 @@ loginForm.addEventListener('submit', (e) => {
             }
             //if login is successful
             else{
-                console.log(data);
                 //change login button to logout
                 buttonGroupLoginButton.textContent = 'Logout';
 
