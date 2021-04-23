@@ -18,6 +18,9 @@ const seconds = document.getElementById('seconds');
 const minutes = document.getElementById('minutes');
 let timer;
 
+//variables related to logged in user
+let loggedInEmail;
+
 //variables for buttons for switching timer type
 const timerSwitchButtons = document.querySelectorAll('.timerswitch');
 
@@ -26,7 +29,11 @@ const addTaskButton = document.getElementById('addTask');
 let addTaskString = document.getElementById('addTaskString');
 let removeTaskButtons = document.querySelectorAll('.removeTask');
 
+//variables related to button group
+const buttonGroupLoginButton = document.getElementById('buttonGroupLoginButton');
+
 //variables related to settings modal
+const settingsForm = document.getElementById('settingsForm');
 const settingsButton = document.getElementById('settingsButton');
 const saveSettings = document.getElementById('saveSettings');
 let settingsPomodoroLength = document.getElementById('settingsPomodoroLength');
@@ -38,6 +45,8 @@ const loginForm = document.getElementById('loginForm');
 const loginButton = document.getElementById('loginButton');
 const loginEmail = document.getElementById('loginEmail');
 const loginPassword = document.getElementById('loginPassword');
+const loginModalText = document.getElementById('loginModalText');
+const closeLoginModalButton = document.getElementById('closeLoginModalButton');
 
 //variables related to register modal
 const registerForm = document.getElementById('registerForm');

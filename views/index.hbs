@@ -25,7 +25,7 @@
                         <div class="btn-group float-end" role="group" aria-label="Basic example">
                             <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#informationModal"><i class='fas fa-info'></i></button>
                             <button id='settingsButton' type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#settingsModal"><i class='fas fa-cog'></i></button>
-                            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                            <button id='buttonGroupLoginButton' type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
                             <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
                         </div>
                     </div>
@@ -116,9 +116,30 @@
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button id='closeSettingsModalButton' type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            <form id='settingsForm'>
+                <div class="mb-3">
+                    <label for="setPomodoro" class="form-label">Set Pomodoro</label>
+                    <input id='settingsPomodoroLength' required type="number" min='1' class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="setShortBreak" class="form-label">Set Short Break</label>
+                    <input id='settingsShortBreakLength' required type="number" min='1' class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="setLongBreak" class="form-label">Set Long Break</label>
+                    <input id='settingsLongBreakLength' required type="number" min='1' class="form-control">
+                </div>
+                <div class='row'>
+                    <div class='col-10'>Note: Saving will restart timers</div>
+                    <div class='col-2'>
+                        <button id='saveSettings' class="float-end btn btn-primary">Login</button>
+                    </div>
+                </div>
+            </form>
+            <!--
             <div class='row'>
                 <div class='col-8'>Set Pomodoro</div>
                 <div class='col-4'>
@@ -142,6 +163,7 @@
             Note: Saving will restart timers
             <button id='saveSettings' type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
           </div>
+          -->
     </div>
     </div>
 </div>
@@ -152,7 +174,7 @@
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button id='closeLoginModalButton' type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form id='loginForm'>
@@ -164,7 +186,12 @@
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input id='loginPassword' required type="password" class="form-control">
                 </div>
-                <button id='loginButton' class="float-end btn btn-primary">Login</button>
+                <div class='row'>
+                    <div id='loginModalText' class='col-10'></div>
+                    <div class='col-2'>
+                        <button id='loginButton' class="float-end btn btn-primary">Login</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

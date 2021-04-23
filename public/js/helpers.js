@@ -116,3 +116,8 @@ function startStopFunction(){
         clearInterval(progressBarFunction);
     }
 }
+
+//for updating user's timers in database
+function updateTimers(loggedInEmail, pomodoroTimeLength, shortBreakTimeLength, longBreakTimeLength){
+    
+}

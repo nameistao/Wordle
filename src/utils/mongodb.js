@@ -36,9 +36,9 @@ const register = (email, password, callback) => {
                     db.collection('users').insertOne({
                         email: email,
                         passwordHash: pwHash,
-                        pomodoroTime: 25,
-                        shortBreakTime: 5,
-                        longBreakTime: 15,
+                        pomodoroTime: 25 * 60,
+                        shortBreakTime: 5 * 60,
+                        longBreakTime: 15 * 60,
                         tasks: []
                     }, (error, result) => {
                         if(error){
