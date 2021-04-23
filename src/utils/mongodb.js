@@ -3,7 +3,7 @@ const {MongoClient, ObjectID} = require('mongodb');
 const bcrypt = require('bcrypt');
 
 //function for registering
-const register = (email, password) => {
+const register = (email, password, callback) => {
     //set connectionURL and database name
     const databaseName = 'pomodororo';
     const connectionURL = 'mongodb+srv://tao:DoxmGsMXpm4sKeRq@cluster0.2fxjm.mongodb.net/my'+databaseName+'?retryWrites=true&w=majority';
@@ -11,19 +11,22 @@ const register = (email, password) => {
     //connect to client
     MongoClient.connect(connectionURL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
         if(error){
-            return console.log('Unable to connect to database');
+            callback('Unable to connect to database', undefined);
+            return;
         }
         const db = client.db(databaseName);
 
         //check if user exists already
         db.collection('users').findOne({email: email}, (error, user) => {
             if(error) {
-                return console.log('Unable to fetch');
+                callback('Unable to fetch', undefined);
+                return;
             }
             
             //if user exists
             if(user !== null){
-                return console.log('User exists already.');
+                callback('User exists already.',undefined);
+                return;
             }
             //else add user
             else{
@@ -39,20 +42,22 @@ const register = (email, password) => {
                         tasks: []
                     }, (error, result) => {
                         if(error){
-                            return console.log('unable to register user');
+                            callback('unable to register user', undefined);
+                            return;
                         }
-                        
-                        console.log(result.ops);
+                        else{
+                            callback(undefined, 'registration successful');
+                            return;
+                        }
                     });
                 });
             }
-            console.log(user);
         })
     });
 };
 
 //function for login
-const login = (email, password) => {
+const login = (email, password, callback) => {
     //set connectionURL and database name
     const databaseName = 'pomodororo';
     const connectionURL = 'mongodb+srv://tao:DoxmGsMXpm4sKeRq@cluster0.2fxjm.mongodb.net/my'+databaseName+'?retryWrites=true&w=majority';
@@ -60,39 +65,49 @@ const login = (email, password) => {
     //connect to client
     MongoClient.connect(connectionURL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
         if(error){
-            return console.log('Unable to connect to database');
+            callback('Unable to connect to database',undefined);
+            return;
         }
         const db = client.db(databaseName);
 
         //check if user exists
         db.collection('users').findOne({email: email}, (error, user) => {
             if(error) {
-                return console.log('Unable to fetch');
+                callback('Unable to fetch',undefined);
+                return;
             }
             
             //if user exists, check if passwordHash matches
             //if so, send user data to front-end
             if(user !== null){
-                //TODO: extract user data
-                console.log(user);
 
-                //TODO: check if passwordHash matches
+                //check if passwordHash matches
                 bcrypt.compare(password, user.passwordHash, function(err, result) {
                     if(err){
-                        return console.log('password comparison error');
+                        callback('password comparison error', undefined);
+                        return;
                     }
                     if(result === false){
-                        return console.log('password does not match');
+                        callback('password does not match', undefined);
+                        return;
                     }
-                    console.log('password matches');
-
                     //now pass user data to front-end
+                    const userData = {
+                        email: user.email,
+                        pomodoroTime: user.pomodoroTime,
+                        shortBreakTime: user.shortBreakTime,
+                        longBreakTime: user.longBreakTime,
+                        tasks: user.tasks
+                    }
+                    callback(undefined, userData);
+                    return;
                 });
             }
             //else tell front-end user doesn't exist
             else{
-                //TODO: tell front-end user doesn't exist
-                return console.log('User doesn\'t exist');
+                //tell front-end user doesn't exist
+                callback('user doesn\'t exist', undefined);
+                return;
             }
         })
     });

@@ -79,10 +79,10 @@ loginForm.addEventListener('submit', (e) => {
     fetch('/server?mode=login&email=' + loginEmail.value + '&password=' + loginPassword.value).then((response) => {
         response.json().then((data) => {
             if(data.error){
-                alert("No user exists. Please Register.");
+                alert(data.error);
             }
             else{
-                alert("Successfully Logged In.")
+                alert(data);
             }
         });
     });
@@ -91,13 +91,20 @@ loginForm.addEventListener('submit', (e) => {
 //for register, sends info to back-end
 registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    registerModalText.textContent = 'Status: Registering...';
     fetch('/server?mode=register&email=' + registerEmail.value + '&password=' + registerPassword.value).then((response) => {
+        
         response.json().then((data) => {
             if(data.error){
-                alert("User already exists.");
+                registerModalText.textContent = 'Status: ' + data.error;
             }
+            //if registration is successful, close out of the modal
             else{
-                alert("Successfully Registered.")
+                registerModalText.textContent = 'Status: Success';
+                registerEmail.value = '';
+                registerPassword.value = '';
+                closeRegisterModalButton.click();
+                registerModalText.textContent = '';
             }
         });
     });
