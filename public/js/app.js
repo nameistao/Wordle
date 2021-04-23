@@ -132,7 +132,7 @@ loginForm.addEventListener('submit', (e) => {
 registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     registerModalText.textContent = 'Status: Registering...';
-    fetch('/server?mode=register&email=' + registerEmail.value + '&password=' + registerPassword.value).then((response) => {
+    fetch('/server?mode=updateTimers&email=' + registerEmail.value + '&password=' + registerPassword.value).then((response) => {
         
         response.json().then((data) => {
             if(data.error){

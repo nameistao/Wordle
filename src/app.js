@@ -52,6 +52,17 @@ app.get('/server', (req, res) => {
             }
         });
     }
+    //TODO: for updating timers
+    else if(req.query.mode === 'updateTimers'){
+        mongodbUtils.updateTimers(req.query.email, req.query.pomodoroTime, req.query.shortBreakTime, req.query.longBreakTime, (error, data) => {
+            if(error){
+                res.send({error});
+            }
+            else{
+                res.send({data});
+            }
+        });
+    }
 });
 
 //every other route gets routed to index.hbs

@@ -119,5 +119,16 @@ function startStopFunction(){
 
 //for updating user's timers in database
 function updateTimers(loggedInEmail, pomodoroTimeLength, shortBreakTimeLength, longBreakTimeLength){
-    
+    fetch('/server?mode=updateTimers&email=' + loggedInEmail + '&pomodoroTime=' + pomodoroTimeLength + '&shortBreakTime=' + shortBreakTimeLength + '&longBreakTime=' + longBreakTimeLength).then((response) => {
+        
+        response.json().then((data) => {
+            if(data.error){
+                console.log(data.error);
+            }
+            //if update is successful
+            else{
+                console.log(data);
+            }
+        });
+    });
 }

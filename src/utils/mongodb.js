@@ -113,8 +113,44 @@ const login = (email, password, callback) => {
     });
 };
 
+//function for updating timers
+const updateTimers = (email, pomodoroTime, shortBreakTime, longBreakTime, callback) =>{
+    //set connectionURL and database name
+    const databaseName = 'pomodororo';
+    const connectionURL = 'mongodb+srv://tao:DoxmGsMXpm4sKeRq@cluster0.2fxjm.mongodb.net/my'+databaseName+'?retryWrites=true&w=majority';
+    
+    //connect to client
+    MongoClient.connect(connectionURL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
+        if(error){
+            callback('Unable to connect to database',undefined);
+            return;
+        }
+        const db = client.db(databaseName);
+
+        //check if user exists
+        db.collection('users').findOne({email: email}, (error, user) => {
+            if(error) {
+                callback('Unable to fetch',undefined);
+                return;
+            }
+            
+            //TODO: if user exists, update timer data
+            if(user !== null){
+
+            }
+            //else tell front-end user doesn't exist
+            else{
+                //tell front-end user doesn't exist
+                callback('user doesn\'t exist', undefined);
+                return;
+            }
+        })
+    });
+};
+
 //export module
 module.exports = {
     register,
-    login
+    login,
+    updateTimers
 };
