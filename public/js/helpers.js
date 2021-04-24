@@ -57,6 +57,7 @@ function removeTask(row){
     row.parentNode.parentNode.remove();
     removeTaskButtons = document.querySelectorAll('.removeTask');
     taskInputs = document.querySelectorAll('.tasks');
+    updateTasks(loggedInEmail, tasksText);
 }
 
 //update title with time
@@ -131,6 +132,33 @@ function updateTimers(loggedInEmail, pomodoroTimeLength, shortBreakTimeLength, l
             //if update is successful
             else{
                 console.log(data);
+            }
+        });
+    });
+}
+
+//for updating user's tasks in database
+function updateTasks(loggedInEmail, tasksText){
+    //get all the data first and store it in tasksText
+    tasksText.splice(0,tasksText.length);
+
+    taskInputs.forEach( (input) => {
+        tasksText.push(input.value);
+    });
+
+    //remove the first value
+    tasksText.shift();
+
+    //pass tasksText to back-end
+    fetch('/server?mode=updateTasks&email=' + loggedInEmail + '&tasksText=' + tasksText).then((response) => {
+        
+        response.json().then((data) => {
+            if(data.error){
+                console.log(data.error);
+            }
+            //if update is successful
+            else{
+                alert("Update Success!");
             }
         });
     });
