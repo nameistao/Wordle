@@ -122,6 +122,10 @@ loginForm.addEventListener('submit', (e) => {
                 buttonGroupLoginButton.removeAttribute('data-bs-toggle');
 
                 //TODO: update page with user information (tasks)
+                tasks.innerHTML = `<div class='row'><div class='col-11 mt-5 p-2'><input id='addTaskString' type='text' class='tasks form-control' placeholder='Add Task'></div><div class='col-1 mt-5 p-2'><button id='addTask' class='btn btn-outline-light'><i class="fas fa-plus"></i></button></div></div>`;
+                for(let i = 0;i<data.tasks.length; i++){
+                    tasks.innerHTML += `<div class='row'><div class='col-11 p-2'><input type='text' value='${data.tasks[i]}' class='tasks form-control'></div><div class='col-1 p-2'><button onclick='removeTask(this)' class='removeTask btn btn-outline-light'><i class='fas fa-minus'></i></button></div></div>`;
+                }
 
                 //empty login inputs and close the modal
                 loginModalText.textContent = 'Status: Success';
