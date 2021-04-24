@@ -127,23 +127,45 @@ const updateTimers = (email, pomodoroTime, shortBreakTime, longBreakTime, callba
         }
         const db = client.db(databaseName);
 
-        //updates that user's timers
-        const updatePromise = db.collection('users').updateOne({
-            email: email
-        },
-        {
-            $set: {
-                pomodoroTime: pomodoroTime,
-                shortBreakTime: shortBreakTime,
-                longBreakTime: longBreakTime
+        db.collection('users').updateOne(
+            {email: email},
+            {
+                $set: {
+                    pomodoroTime: pomodoroTime,
+                    shortBreakTime: shortBreakTime,
+                    longBreakTime: longBreakTime
+                }
             }
-        })
+        )
+    });
+};
+
+//function for updating tasks
+const updateTasks = (email, tasksText, callback) =>{
+    //set connectionURL and database name
+    const databaseName = 'pomodororo';
+    const connectionURL = 'mongodb+srv://tao:DoxmGsMXpm4sKeRq@cluster0.2fxjm.mongodb.net/my'+databaseName+'?retryWrites=true&w=majority';
     
-        updatePromise.then((result) => {
-            console.log(result);
-        }).catch((error) => {
-            console.log(error);
-        })
+    //connect to client
+    MongoClient.connect(connectionURL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
+        if(error){
+            callback('Unable to connect to database',undefined);
+            return;
+        }
+        const db = client.db(databaseName);
+
+        //create tasks array
+        let tasksTextArray = tasksText.split(',');
+
+        //update user's tasks
+        db.collection('users').updateOne(
+            {email: email},
+            {
+                $set: {
+                    tasks: tasksTextArray
+                }
+            }
+        )
     });
 };
 
@@ -151,5 +173,6 @@ const updateTimers = (email, pomodoroTime, shortBreakTime, longBreakTime, callba
 module.exports = {
     register,
     login,
-    updateTimers
+    updateTimers,
+    updateTasks
 };

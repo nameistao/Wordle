@@ -52,9 +52,19 @@ app.get('/server', (req, res) => {
             }
         });
     }
-    //TODO: for updating timers
+    //for updating timers
     else if(req.query.mode === 'updateTimers'){
         mongodbUtils.updateTimers(req.query.email, req.query.pomodoroTime, req.query.shortBreakTime, req.query.longBreakTime, (error, data) => {
+            if(error){
+                res.send({error});
+            }
+            else{
+                res.send({data});
+            }
+        });
+    }
+    else if(req.query.mode === 'updateTasks'){
+        mongodbUtils.updateTasks(req.query.email, req.query.tasksText, (error, data) => {
             if(error){
                 res.send({error});
             }

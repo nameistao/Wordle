@@ -160,16 +160,29 @@ registerForm.addEventListener('submit', (e) => {
 
 //for saving tasks list on database when addTask is clicked
 addTaskButton.addEventListener('click', () => {
-    //get all the data first and store 
+    //get all the data first and store it in tasksText
     tasksText.splice(0,tasksText.length);
 
     taskInputs.forEach( (input) => {
-        if(input.value !== undefined){
-            tasksText.push(input.value);
-        }
+        tasksText.push(input.value);
     });
 
-    console.log(tasksText);
+    //remove the first value
+    tasksText.shift();
+
+    //pass tasksText to back-end
+    fetch('/server?mode=updateTasks&email=' + loggedInEmail + '&tasksText=' + tasksText).then((response) => {
+        
+        response.json().then((data) => {
+            if(data.error){
+                console.log(data.error);
+            }
+            //if update is successful
+            else{
+                alert("Update Success!");
+            }
+        });
+    });
 });
 
 //for saving tasks list on database when removeTask is clicked
