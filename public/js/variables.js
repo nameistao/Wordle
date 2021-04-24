@@ -25,7 +25,7 @@ let loggedInEmail;
 const timerSwitchButtons = document.querySelectorAll('.timerswitch');
 
 //variables related to tasks
-const addTaskButton = document.getElementById('addTask');
+let addTaskButton = document.getElementById('addTask');
 let addTaskString = document.getElementById('addTaskString');
 let removeTaskButtons = document.querySelectorAll('.removeTask');
 let taskInputs = document.querySelectorAll('.tasks');
