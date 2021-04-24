@@ -28,6 +28,8 @@ const timerSwitchButtons = document.querySelectorAll('.timerswitch');
 const addTaskButton = document.getElementById('addTask');
 let addTaskString = document.getElementById('addTaskString');
 let removeTaskButtons = document.querySelectorAll('.removeTask');
+let taskInputs = document.querySelectorAll('.tasks');
+let tasksText = [];
 
 //variables related to button group
 const buttonGroupLoginButton = document.getElementById('buttonGroupLoginButton');

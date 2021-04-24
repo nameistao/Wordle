@@ -55,6 +55,8 @@ function toBlue(){
 //for removing tasks
 function removeTask(row){
     row.parentNode.parentNode.remove();
+    removeTaskButtons = document.querySelectorAll('.removeTask');
+    taskInputs = document.querySelectorAll('.tasks');
 }
 
 //update title with time
@@ -65,9 +67,10 @@ function updateTitle(){
 //adding tasks based on text in task bar
 function addTaskFunction(){
     let taskString = addTaskString.value;
-    document.getElementById('tasks').insertAdjacentHTML('beforeend', "<div class='row'><div class='col-11 p-2'><input type='text' value='" + taskString + "' class='tasks form-control'></div><div class='col-1 p-2'><button onclick='removeTask(this)' id='removeTask' class='btn btn-outline-light'><i class='fas fa-minus'></i></button></div></div>");
+    document.getElementById('tasks').insertAdjacentHTML('beforeend', "<div class='row'><div class='col-11 p-2'><input type='text' value='" + taskString + "' class='tasks form-control'></div><div class='col-1 p-2'><button onclick='removeTask(this)' class='removeTask btn btn-outline-light'><i class='fas fa-minus'></i></button></div></div>");
     addTaskString.value = null;
     removeTaskButtons = document.querySelectorAll('.removeTask');
+    taskInputs = document.querySelectorAll('.tasks');
 }
 
 //start/stop functionality

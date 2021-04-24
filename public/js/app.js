@@ -157,3 +157,19 @@ registerForm.addEventListener('submit', (e) => {
         });
     });
 });
+
+//for saving tasks list on database when addTask is clicked
+addTaskButton.addEventListener('click', () => {
+    //get all the data first and store 
+    tasksText.splice(0,tasksText.length);
+
+    taskInputs.forEach( (input) => {
+        if(input.value !== undefined){
+            tasksText.push(input.value);
+        }
+    });
+
+    console.log(tasksText);
+});
+
+//for saving tasks list on database when removeTask is clicked
