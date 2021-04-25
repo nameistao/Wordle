@@ -81,6 +81,8 @@ buttonGroupLoginButton.addEventListener('click', () => {
 
         //update loggedInEmail
         loggedInEmail = null;
+
+        titleText.textContent = 'Pomodororo';
     }
 });
 
@@ -135,6 +137,9 @@ loginForm.addEventListener('submit', (e) => {
                 loginPassword.value = '';
                 closeLoginModalButton.click();
                 loginModalText.textContent = '';
+
+                //change pomodororo to username
+                titleText.textContent = data.email + '\'s Pomodororo';
             }
         });
     });

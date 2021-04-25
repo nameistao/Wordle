@@ -57,3 +57,6 @@ const registerEmail = document.getElementById('registerEmail');
 const registerPassword = document.getElementById('registerPassword');
 const registerModalText = document.getElementById('registerModalText');
 const closeRegisterModalButton = document.getElementById('closeRegisterModalButton');
+
+//title text
+const titleText = document.getElementById('titleText');
