@@ -90,7 +90,7 @@ buttonGroupLoginButton.addEventListener('click', () => {
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     loginModalText.textContent = 'Status: Logging in...';
-    fetch('/server?mode=login&email=' + loginEmail.value.toLowerCase() + '&password=' + loginPassword.value).then((response) => {
+    fetch('/server?mode=login&email=' + loginEmail.value.toLowerCase().trim() + '&password=' + loginPassword.value).then((response) => {
         response.json().then((data) => {
             if(data.error){
                 loginModalText.textContent = 'Status: ' + data.error;
@@ -149,7 +149,7 @@ loginForm.addEventListener('submit', (e) => {
 registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     registerModalText.textContent = 'Status: Registering...';
-    fetch('/server?mode=register&email=' + registerEmail.value.toLowerCase() + '&password=' + registerPassword.value).then((response) => {
+    fetch('/server?mode=register&email=' + registerEmail.value.toLowerCase().trim() + '&password=' + registerPassword.value).then((response) => {
         
         response.json().then((data) => {
             if(data.error){
