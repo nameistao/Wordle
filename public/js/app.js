@@ -79,10 +79,13 @@ buttonGroupLoginButton.addEventListener('click', () => {
         buttonGroupLoginButton.setAttribute('data-bs-toggle', 'modal');
         buttonGroupLoginButton.textContent = 'Login';
 
+        //save tasks on database 
+        updateTasks(loggedInEmail, tasksText);
         //update loggedInEmail
         loggedInEmail = null;
 
         titleText.textContent = 'Pomodororo';
+        
     }
 });
 
@@ -179,7 +182,7 @@ window.addEventListener('beforeunload', function (e) {
     //perform database save operation
     if(loggedInEmail !== null && loggedInEmail !== undefined){
         updateTasks(loggedInEmail, tasksText);
-        for (var i = 0; i < 500000000; i++) { }
+        for (var i = 0; i < 400000000; i++) { }
         return undefined;
     }
 });
