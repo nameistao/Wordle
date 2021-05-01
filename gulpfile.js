@@ -8,9 +8,9 @@ function minifyJS(){
     .pipe(gulp.dest('./public/uglyJS'));
 }
 
-//exports.default = es;
-
 exports.default = function() {
   // You can use a single task
   watch('public/js/*.js', minifyJS);
 };
+
+exports.minify = minifyJS;
