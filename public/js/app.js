@@ -173,3 +173,13 @@ registerForm.addEventListener('submit', (e) => {
 addTaskButton.addEventListener('click', () => {
     updateTasks(loggedInEmail, tasksText);
 });
+
+//on browser close, sends tasks to database
+window.addEventListener('beforeunload', function (e) {
+    //perform database save operation
+    if(loggedInEmail !== null && loggedInEmail !== undefined){
+        updateTasks(loggedInEmail, tasksText);
+        for (var i = 0; i < 500000000; i++) { }
+        return undefined;
+    }
+});
