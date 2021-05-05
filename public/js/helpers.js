@@ -3,7 +3,7 @@
 function toPomodoroMode(){
     minutes.textContent = (pomodoroTimeLength / 60).toString();
     seconds.textContent = '00';
-    toRed();
+    toPomodoroColor();
     startStop.textContent = 'Start';
     clearInterval(timer);
     currentTimeLength = pomodoroTimeLength;
@@ -15,7 +15,7 @@ function toPomodoroMode(){
 function toShortBreakMode(){
     minutes.textContent = (shortBreakTimeLength / 60).toString();
     seconds.textContent = '00';
-    toGreen();
+    toShortBreakColor();
     startStop.textContent = 'Start';
     clearInterval(timer);
     currentTimeLength = shortBreakTimeLength;
@@ -27,7 +27,7 @@ function toShortBreakMode(){
 function toLongBreakMode(){
     minutes.textContent = (longBreakTimeLength / 60).toString();
     seconds.textContent = '00';
-    toBlue();
+    toLongBreakColor();
     startStop.textContent = 'Start';
     clearInterval(timer);
     currentTimeLength = longBreakTimeLength;
@@ -37,19 +37,22 @@ function toLongBreakMode(){
 }
 
 //color scheme change functions
-function toRed(){
-    document.body.style.backgroundColor = '#db524d';
-    document.getElementById('innerBox').style.backgroundColor = "#df645f";
+function toPomodoroColor(){
+    document.body.style.backgroundColor = '#2f806d';
+    document.getElementById('innerBox').style.backgroundColor = "#37957f";
+    startStop.style.color = '#2f806d';
 }
 
-function toGreen(){
-    document.body.style.backgroundColor = '#468e91';
-    document.getElementById('innerBox').style.backgroundColor = "#599a9c";
+function toShortBreakColor(){
+    document.body.style.backgroundColor = '#0E555E';
+    document.getElementById('innerBox').style.backgroundColor = "#13707C";
+    startStop.style.color = '#0E555E';
 }
 
-function toBlue(){
-    document.body.style.backgroundColor = '#437ea7';
-    document.getElementById('innerBox').style.backgroundColor = "#568bb1";
+function toLongBreakColor(){
+    document.body.style.backgroundColor = '#164779';
+    document.getElementById('innerBox').style.backgroundColor = "#19528A";
+    startStop.style.color = '#164779';
 }
 
 //for removing tasks

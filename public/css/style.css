@@ -1,8 +1,9 @@
 body {
-  background-color: #db524d;
+  background-color: #2f806d;
 }
 #innerBox {
-  background-color: #df645f;
+  background-color: #37957f;
+  border-radius: 75px;
 }
 
 /*task list css*/
@@ -53,7 +54,7 @@ body {
   font-size: 22px;
   height: 55px;
   text-transform: uppercase;
-  color: #db524d;
+  color: #2f806d;
   font-weight: bold;
   width: 200px;
   background-color: white;
@@ -61,7 +62,7 @@ body {
   border-style: none;
   margin: 20px 0px 0px;
   padding: 0px 12px;
-  border-radius: 4px;
+  border-radius: 75px;
   transition: color 0.5s ease-in-out 0s;
 }
 
