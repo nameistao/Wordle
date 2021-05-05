@@ -79,9 +79,9 @@ function addTaskFunction(){
 
 //start/stop functionality
 function startStopFunction(){
-    if(startStop.textContent === 'Start'){
+    if(startStop.textContent === 'Start ⏎'){
         startStopButtonSound.play();
-        startStop.textContent = 'Stop';
+        startStop.textContent = 'Stop ⏎';
         startStop.classList.add('active');
 
         let sec = +seconds.textContent;
@@ -119,7 +119,7 @@ function startStopFunction(){
     }
     else{
         startStopButtonSound.play();
-        startStop.textContent = 'Start';
+        startStop.textContent = 'Start ⏎';
         startStop.classList.remove('active');
         clearInterval(timer);
         clearInterval(progressBarFunction);

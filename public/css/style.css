@@ -76,3 +76,14 @@ button:active {
   box-shadow: none;
   outline: none;
 }
+
+/*mode buttons css*/
+.modeButton {
+  border-radius: 75px !important;
+  border-width: 0;
+}
+
+/*time display css*/
+#timeDisplay {
+  font-size: large !important;
+}

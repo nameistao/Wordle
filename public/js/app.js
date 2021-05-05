@@ -186,3 +186,12 @@ window.addEventListener('beforeunload', function (e) {
         return undefined;
     }
 });
+
+//enter key for start and stopping timer
+window.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Trigger the button element with a click
+    startStopFunction();
+  }
+});
