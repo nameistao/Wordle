@@ -79,6 +79,7 @@ function startStopFunction(){
     if(startStop.textContent === 'Start'){
         startStopButtonSound.play();
         startStop.textContent = 'Stop';
+        startStop.classList.add('active');
 
         let sec = +seconds.textContent;
         let min = +minutes.textContent;
@@ -116,6 +117,7 @@ function startStopFunction(){
     else{
         startStopButtonSound.play();
         startStop.textContent = 'Start';
+        startStop.classList.remove('active');
         clearInterval(timer);
         clearInterval(progressBarFunction);
     }
