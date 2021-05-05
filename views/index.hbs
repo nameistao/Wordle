@@ -29,7 +29,18 @@
 </head>
 
 <body>
+    <!-- progress bar -->
+    <div class='row'>
+        <div class="progress-color progress">
+            <div id='progressBar' class="progress-bar-color progress-bar" role="progressbar" aria-valuemin="0"
+                aria-valuemax="100" style="width:0%">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+    </div>
     <main class='container'>
+
+
         <!-- first row - title -->
         <div class='row mt-5'>
             <div class='col-10 offset-1'>
@@ -54,19 +65,7 @@
             </div>
         </div>
 
-        <!-- second row - progress bar -->
-        <div class='row'>
-            <div class='col-10 offset-1 mt-3'>
-                <div class="progress-color progress">
-                    <div id='progressBar' class="progress-bar-color progress-bar" role="progressbar" aria-valuemin="0"
-                        aria-valuemax="100" style="width:0%">
-                        <span class="sr-only"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- third row - timer box -->
+        <!-- second row - timer box -->
         <div class='row'>
             <div id='innerBox' class='col-10 offset-1 col-md-8 offset-md-2 mt-5 well rounded-lg'>
                 <div class='row mt-4'>
@@ -87,7 +86,7 @@
             </div>
         </div>
 
-        <!-- fourth row - task list -->
+        <!-- third row - task list -->
         <div class='row'>
             <!-- each row here is a task row -->
             <div id='tasks' class='col-10 offset-1'>
