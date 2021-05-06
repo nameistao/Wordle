@@ -53,10 +53,19 @@
                             <button id='settingsButton' type="button" class="btn btn-outline-light"
                                 data-bs-toggle="modal" data-bs-target="#settingsModal"><i
                                     class='fas fa-cog'></i></button>
-                            <button id='buttonGroupLoginButton' type="button" class="btn btn-outline-light"
-                                data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-                            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
-                                data-bs-target="#registerModal">Register</button>
+
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-outline-light dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="far fa-user"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <li><button id='buttonGroupLoginButton' type="button" class="btn"
+                                            data-bs-toggle="modal" data-bs-target="#loginModal">Login</button></li>
+                                    <li><button type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#registerModal">Register</button></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,11 +74,12 @@
 
         <!-- second row - timer box -->
         <div class='row'>
-            <div id='innerBox' class='col-10 offset-1 col-md-8 offset-md-2 mt-3 well rounded-lg'>
+            <div id='innerBox' class='col-10 offset-1 col-md-6 offset-md-3 mt-3 well rounded-lg'>
                 <div class='row mt-3'>
                     <div class="btn-group offset-1 col-10 col-md-8 offset-md-2" role="group" aria-label="Basic example">
                         <button id='pomodoro' type="button"
-                            class="modeButton timerswitch btn btn-outline-light">Pomodoro</button>
+                            class="modeButton timerswitch btn btn-outline-light">Pomodoro
+                        </button>
                         <button id='short-break' type="button"
                             class="modeButton timerswitch btn btn-outline-light">Short
                             Break</button>
@@ -77,8 +87,8 @@
                             Break</button>
                     </div>
                 </div>
-                <div id='timeDisplay' class='row text-center text-white font-weight-bold mt-3'>
-                    <h1 id='timer' class='display-1'><span id='minutes'></span> : <span id='seconds'>00</span></h1>
+                <div id='timeDisplay' class='row text-center text-white font-weight-bold'>
+                    <h1 id='timer'><span id='minutes'></span> : <span id='seconds'>00</span></h1>
                 </div>
                 <div class='text-white text-center mb-4'>
                     <button id='startStop' class='main-button'>Start ⏎</button>
@@ -86,9 +96,35 @@
             </div>
         </div>
 
+        <!-- third row - kanban
+        <div class='row'>
+            <div id='kanban' class='text-center col-10 offset-1 mt-4'>
+                <div class='row mt-3'>
+                    <div id='todo' class='col-4'>
+                        Todo
+                        <hr>
+                        <div class='row'>
+                            <ul class=' kanbanColumn mt-2'>
+                                <li class='mt-3 mb-3'>task 1<button class='todoRight'>r</button></li>
+                                <li class='mt-3 mb-3'>task 2</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id='inProgress' class='col-4'>
+                        In Progress
+                        <hr>
+                    </div>
+                    <div id='done' class='col-4'>
+                        Done
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
         <!-- third row - task list -->
         <div class='row'>
-            <!-- each row here is a task row -->
             <div id='tasks' class='col-10 offset-1'>
                 <div class='row'>
                     <div class='col-11 mt-5 p-2'>
@@ -100,6 +136,7 @@
                 </div>
             </div>
         </div>
+
     </main>
 
     <!-- Modal for information -->

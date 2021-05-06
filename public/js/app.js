@@ -142,7 +142,7 @@ loginForm.addEventListener('submit', (e) => {
                 loginModalText.textContent = '';
 
                 //change pomodororo to username
-                titleText.textContent = data.email + '\'s Pomodororo';
+                titleText.textContent = data.email.charAt(0).toUpperCase() + data.email.slice(1) + '\'s Pomodororo';
             }
         });
     });
