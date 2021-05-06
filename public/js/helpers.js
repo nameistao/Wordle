@@ -4,7 +4,7 @@ function toPomodoroMode(){
     minutes.textContent = (pomodoroTimeLength / 60).toString();
     seconds.textContent = '00';
     toPomodoroColor();
-    startStop.textContent = 'Start';
+    startStop.textContent = 'Start ⏎';
     clearInterval(timer);
     currentTimeLength = pomodoroTimeLength;
     progressBar.style.width = '0%';
@@ -16,7 +16,7 @@ function toShortBreakMode(){
     minutes.textContent = (shortBreakTimeLength / 60).toString();
     seconds.textContent = '00';
     toShortBreakColor();
-    startStop.textContent = 'Start';
+    startStop.textContent = 'Start ⏎';
     clearInterval(timer);
     currentTimeLength = shortBreakTimeLength;
     progressBar.style.width = '0%';
@@ -28,7 +28,7 @@ function toLongBreakMode(){
     minutes.textContent = (longBreakTimeLength / 60).toString();
     seconds.textContent = '00';
     toLongBreakColor();
-    startStop.textContent = 'Start';
+    startStop.textContent = 'Start ⏎';
     clearInterval(timer);
     currentTimeLength = longBreakTimeLength;
     progressBar.style.width = '0%';

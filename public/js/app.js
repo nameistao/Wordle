@@ -182,13 +182,13 @@ window.addEventListener('beforeunload', function (e) {
     //perform database save operation
     if(loggedInEmail !== null && loggedInEmail !== undefined){
         updateTasks(loggedInEmail, tasksText);
-        for (var i = 0; i < 500000000; i++) { }
+        for (var i = 0; i < 1000000000; i++) { }
         return undefined;
     }
 });
 
 //enter key for start and stopping timer
-window.addEventListener("keyup", function(event) {
+window.addEventListener("keypress", function(event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
     // Trigger the button element with a click
