@@ -1,1 +1,1 @@
-let startStopButtonSound=document.getElementById("startStopButtonSound"),timesUpSound=document.getElementById("timesUp");
+"use strict";let startStopButtonSound=document.getElementById("startStopButtonSound"),timesUpSound=document.getElementById("timesUp");
