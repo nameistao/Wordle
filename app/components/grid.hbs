@@ -1,5 +1,5 @@
 <main class="grid-container">
-    {{#each this.lines as |line|}}
-        <Row/>
+    {{#each this.lines as |line index|}}
+        <Row @disabled={{line}}/>
     {{/each}}
 </main>

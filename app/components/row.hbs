@@ -1,8 +1,6 @@
-<form {{on "submit" this.guess}} ...attributes>
-    <Box name='1'/>
-    <Box name='2'/>
-    <Box name='3'/>
-    <Box name='4'/>
-    <Box name='5'/>
+<form {{on "submit" this.guess}} autocomplete='off' ...attributes>
+    {{#each this.boxes as |box index|}}
+        <Box name={{index}} disabled={{if @disabled 'true'}} />
+    {{/each}}
     <button type="submit" hidden></button> 
 </form> 
