@@ -6,8 +6,9 @@ body {
 
 header {
   height: 7.5%;
-  width: 100%;
+  width: 75%;
   text-align: center;
+  margin: 0 auto;
 }
 
 footer {
@@ -16,7 +17,7 @@ footer {
   text-align: center;
 }
 
-section {
+form {
   display: flex;
   width: 60%;
   justify-content: space-around;

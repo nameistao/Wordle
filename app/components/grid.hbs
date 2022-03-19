@@ -1,3 +1,5 @@
 <main class="grid-container">
-    {{yield}}
+    {{#each this.lines as |line|}}
+        <Row/>
+    {{/each}}
 </main>

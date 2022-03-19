@@ -1,3 +1,8 @@
-<section>
-    {{yield}}
-</section> 
+<form {{on "submit" this.guess}} ...attributes>
+    <Box name='1'/>
+    <Box name='2'/>
+    <Box name='3'/>
+    <Box name='4'/>
+    <Box name='5'/>
+    <button type="submit" hidden></button> 
+</form> 
