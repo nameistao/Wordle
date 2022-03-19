@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class ListOfDraftsComponent extends Component {
+export default class GridComponent extends Component {
   @tracked word;
   @tracked curLine;
 

@@ -1,12 +1,12 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class RentalImageComponent extends Component {
+export default class RowComponent extends Component {
   @action guess(e) {
     e.preventDefault();
     const formData = new FormData(e.target).entries();
-    for (const val of formData) {
-      console.log(val[1]);
+    for (const [key, val] of formData) {
+      console.log(key, val);
     }
   }
 }
